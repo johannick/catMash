@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="model" Class="CatMashDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=JOHANNICK-PC;Initial Catalog=model;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="modelConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Cat" Member="Cats">
+    <Type Name="Cat">
+      <Column Name="id" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="url" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="votes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="rank" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

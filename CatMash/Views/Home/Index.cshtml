@@ -1,0 +1,25 @@
+﻿<header>
+    <h1>Catmash</h1>
+</header>
+
+<div id="cats">
+    <div class="photo">
+        <img v-bind:src="catOne" class="image" v-on:click="voteLeft" />
+        <p>Score : {{catOneScore}}</p>
+    </div>
+    <div class="photo">
+        <img v-bind:src="catTwo" class="image" v-on:click="voteRight" />
+        <p>Score : {{catTwoScore}}</p>
+    </div>
+</div>
+
+<footer>
+    <a class="btn btn-primary" href="/Home/Ranking">See ranking</a>
+    <p> Images de <a href='https://latelier.co'>L'Atelier</a> </p>
+</footer>
+
+@Scripts.Render("~/Scripts/application")
+
+<script type="text/javascript">
+    app.setImages();
+</script>

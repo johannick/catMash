@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="CatMash">
+  <DataContextMoniker Name="/CatMashDataContext" />
+  <nestedChildShapes>
+    <classShape Id="1009d1c9-60d1-4375-b513-52460129ad24" absoluteBounds="3.25, 2.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/CatMashDataContext/Cat" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e3d29373-cabe-483f-b66c-d4974aa15cdc" absoluteBounds="3.265, 3.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
