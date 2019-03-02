@@ -20,7 +20,7 @@ namespace CatMash.Controllers
             }
         }
 
-        // GET api/values/5
+        // GET api/values/id
         public Cat Get(string id)
         {
             using (var context = new CatMashDataContext())
@@ -33,5 +33,30 @@ namespace CatMash.Controllers
             }
         }
 
+        // POST api/values/id
+        public void Post(string id, [FromBody] string against)
+        {
+            using (var context = new CatMashDataContext())
+            {
+                var first = (from cat in context.Cats
+                             where cat.id == id
+                             select cat).First();
+
+                var second = (from cat in context.Cats
+                              where cat.id == against
+                              select cat).First();
+
+                var toAdd = second.rank + 400;
+                var toSub = first.rank - 400;
+
+                first.rank += toAdd;
+                second.rank += toSub;
+
+                ++first.votes;
+                ++second.votes;
+                context.SubmitChanges();
+            }
+        }
+        
     }
 }
