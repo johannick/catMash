@@ -27,3 +27,7 @@ footer, #cats {
 	display: inline-block;
 	margin: 32px auto;
 }
+
+.image:hover {
+	border-color: #01018B;
+}
