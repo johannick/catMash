@@ -12,5 +12,10 @@ namespace CatMash.Controllers
         {
             return View();
         }
+
+        public ActionResult Ranking()
+        {
+            return View();
+        }
     }
 }

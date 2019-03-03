@@ -1,0 +1,27 @@
+﻿<header>
+    <h1>CatMash</h1>
+</header>
+
+<h2>Ranking</h2>
+<a class="btn btn-primary" href="/Home/Index">Back to Votes</a>
+<div id="catsRanking">
+    <ul>
+        <li v-for="cat in cats">
+            <div class="border-dark">
+                <img v-bind:src="cat.url" class="avatar">
+                <p>{{cat.rank / (1 + cat.votes)}}</p>
+                <p></p>
+            </div>
+        </li>
+    </ul>
+</div>
+<footer>
+    
+    <p> Images de <a href='https://latelier.co'>L'Atelier</a> </p>
+</footer>
+
+@Scripts.Render("~/Scripts/ranking")
+
+<script type="text/javascript">
+    ranking.nextCats();
+</script>

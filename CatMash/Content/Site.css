@@ -31,3 +31,15 @@ footer, #cats {
 .image:hover {
 	border-color: #01018B;
 }
+
+.avatar {
+    width : 133px;
+	height : 200px;
+}
+
+#catsRanking ul > li { 
+padding-left: 150px;
+list-style-type: none;
+text-align: center;
+}
+

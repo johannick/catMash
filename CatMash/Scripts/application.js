@@ -4,7 +4,8 @@
         catOne : "http://25.media.tumblr.com/tumblr_m4pvakprVF1r6jd7fo1_500.jpg",
         catTwo : "http://25.media.tumblr.com/tumblr_m2g2ksSLML1qgkc80o1_400.gif",
         catOneScore : -100,
-        catTwoScore: -100
+        catTwoScore: -100,
+        cats: []
         },
 
     methods: {
@@ -38,15 +39,7 @@
 
         upVote: function (first, second) {
 
-            var request = new XMLHttpRequest();
-            request.open('POST', '/api/values/' + first.id, false);  
-            request.send(second.id);
-
-            /* Changement en local pour eviter des requêtes inutiles */
-            first.rank += second.rank + 400;
-            second.rank += first.rank - 400;
-            ++first.votes;
-            ++second.votes;
+            $.post('/api/vote', JSON.stringify({ VoteFor: first.id, VoteAgainst: second.id }));
             this.index = (this.index + 2) % this.cats.length;
             this.nextCatsToVote();
         }
