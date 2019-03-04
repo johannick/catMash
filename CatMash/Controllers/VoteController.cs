@@ -1,7 +1,11 @@
-﻿using CatMash.Data;
+﻿using CatMash.Core;
+using CatMash.Data;
 using CatMash.Model;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
@@ -30,27 +34,45 @@ namespace CatMash.Controllers
             {
                 var first = (from cat in context.Cats
                              where cat.id == model.VoteFor
-                             select cat).First();
+                             select cat).SingleOrDefault();
 
                 var second = (from cat in context.Cats
                               where cat.id == model.VoteAgainst
-                              select cat).First();
+                              select cat).SingleOrDefault();
 
-                lock (first.id)
-                lock (second.id)
+                lock (model.VoteFor)
                 {
-                    var toAdd = second.rank + 400;
-                    var toSub = first.rank - 400;
+                    lock (model.VoteAgainst)
+                    {
+                        var toAdd = second.rank + 400;
+                        var toSub = first.rank - 400;
 
-                    first.rank = first.rank + toAdd;
-                    second.rank = second.rank + toSub;
+                        first.rank = first.rank + toAdd;
+                        second.rank = second.rank + toSub;
 
-                    first.votes = first.votes + 1;
-                    ++second.votes;
-                    context.SubmitChanges();
+                        ++first.votes;
+                        ++second.votes;
+                        UpdateDatabase(model.VoteFor, first.rank, first.votes);
+                        UpdateDatabase(model.VoteAgainst, second.rank, second.votes);
+                        context.SubmitChanges();
+                    }
                 }
             }
         }
 
+        private void UpdateDatabase(string voteFor, int rank, int votes)
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["modelConnectionString"].ConnectionString;
+
+            using (var connection = new OpenConnection(connectionString))
+            using (var command = connection.Connection.CreateCommand())
+            {
+                command.CommandText = "UPDATE Cat SET votes=@votes, rank=@rank WHERE id=@id";
+                command.Parameters.AddWithValue("@votes", votes);
+                command.Parameters.AddWithValue("@rank", rank);
+                command.Parameters.AddWithValue("@id", voteFor);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

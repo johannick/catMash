@@ -139,6 +139,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VoteController.cs" />
+    <Compile Include="Core\OpenConnection.cs" />
     <Compile Include="Data\CatMash.designer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -150,6 +151,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\application.js" />
+    <Content Include="Scripts\Cats.sql" />
     <Content Include="Scripts\ranking.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

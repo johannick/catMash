@@ -1,5 +1,5 @@
         CREATE TABLE [dbo].[Cat](
-            [id] [nvarchar](max) NOT NULL,
+            [id] [varchar](30) NOT NULL primary key,
             [url] [nvarchar](max) NOT NULL,
             [votes] [int] NOT NULL,
             [rank] [int] NOT NULL
