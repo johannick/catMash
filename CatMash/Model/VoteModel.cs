@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace CatMash.Model
+﻿namespace CatMash.Model
 {
     public class VoteModel
     {
