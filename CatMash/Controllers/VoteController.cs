@@ -28,14 +28,16 @@ namespace CatMash.Controllers
             var result = message.Content.ReadAsStringAsync().Result;
             var model = JsonConvert.DeserializeObject<VoteModel>(result);
 
+            using (new ScopedLock(model.VoteFor))
+            using (new ScopedLock(model.VoteAgainst))
             using (var context = new CatMashDataContext())
             {
                 var first = (from cat in context.Cats
-                             where cat.id == model.VoteFor
-                             select cat).SingleOrDefault();
+                                where cat.id == model.VoteFor
+                                select cat).SingleOrDefault();
                 var second = (from cat in context.Cats
-                              where cat.id == model.VoteAgainst
-                              select cat).SingleOrDefault();
+                                where cat.id == model.VoteAgainst
+                                select cat).SingleOrDefault();
                 var toAdd = second.rank + 400;
                 var toSub = first.rank - 400;
 
@@ -49,17 +51,14 @@ namespace CatMash.Controllers
         {
             var connectionString = ConfigurationManager.ConnectionStrings["modelConnectionString"].ConnectionString;
 
-            lock (voteFor)
+            using (var connection = new OpenConnection(connectionString))
+            using (var command = connection.Connection.CreateCommand())
             {
-                using (var connection = new OpenConnection(connectionString))
-                using (var command = connection.Connection.CreateCommand())
-                {
-                    command.CommandText = "UPDATE Cat SET votes=@votes, rank=@rank WHERE id=@id";
-                    command.Parameters.AddWithValue("@votes", votes);
-                    command.Parameters.AddWithValue("@rank", rank);
-                    command.Parameters.AddWithValue("@id", voteFor);
-                    command.ExecuteNonQuery();
-                }
+                command.CommandText = "UPDATE Cat SET votes=@votes, rank=@rank WHERE id=@id";
+                command.Parameters.AddWithValue("@votes", votes);
+                command.Parameters.AddWithValue("@rank", rank);
+                command.Parameters.AddWithValue("@id", voteFor);
+                command.ExecuteNonQuery();
             }
         }
     }
