@@ -9,7 +9,7 @@
         <li v-for="cat in cats">
             <div class="border-dark">
                 <img v-bind:src="cat.url" class="avatar">
-                <p v-if="cat.votes > 0">{{cat.rank / cat.votes}}</p>
+                <p v-if="cat.votes > 0">{{Math.ceil(cat.rank / (1 + cat.votes))}}</p>
                 <p v-else>0</p>
             </div>
         </li>

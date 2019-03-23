@@ -1,4 +1,4 @@
-﻿var app = new Vue({
+var app = new Vue({
     el: '#cats',
     data : {
         catOne : '',
@@ -24,8 +24,8 @@
                 this.setImages();
             this.catOne = this.cats[this.index].url;
             this.catTwo = this.cats[(this.index + 1) % this.cats.length].url;
-            this.catOneScore = this.cats[this.index].rank / (1 + this.cats[this.index].votes);
-            this.catTwoScore = this.cats[(this.index + 1) % this.cats.length].rank / (1 + this.cats[(this.index + 1) % this.cats.length].votes);            
+            this.catOneScore = Math.ceil(this.cats[this.index].rank / (1 + this.cats[this.index].votes));
+            this.catTwoScore = Math.ceil(this.cats[(this.index + 1) % this.cats.length].rank / (1 + this.cats[(this.index + 1) % this.cats.length].votes));            
         },
 
 
