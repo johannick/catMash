@@ -136,6 +136,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VoteController.cs" />
@@ -149,6 +150,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\404-Error.png" />
+    <Content Include="Content\Cat.png" />
+    <Content Include="Content\cat_cage.png" />
+    <Content Include="Content\cat_clean.png" />
+    <Content Include="Content\cat_drunk.png" />
+    <Content Include="Content\cat_eyes.png" />
+    <Content Include="Content\cat_fish.png" />
+    <Content Include="Content\cat_pirate.png" />
+    <Content Include="Content\cat_upsidedown.png" />
+    <Content Include="Content\loader.gif" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\application.js" />
@@ -170,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -1,4 +1,4 @@
-﻿<header>
+<header>
     <h1>CatMash</h1>
 </header>
 
@@ -7,10 +7,22 @@
 <div id="catsRanking">
     <ul>
         <li v-for="cat in cats">
-            <div class="border-dark">
-                <img v-bind:src="cat.url" class="avatar">
-                <p v-if="cat.votes > 0">{{Math.ceil(cat.rank / (1 + cat.votes))}}</p>
-                <p v-else>0</p>
+            <div class="alert alert-primary col-md-9">
+                <span v-if="Math.ceil(cat.rank / cat.votes) > 400">
+                    <img src="~/Content/cat_drunk.png" class="avatar">
+                </span>
+                <span v-else-if="Math.ceil(cat.rank / cat.votes) > 0">
+                    <img src="~/Content/cat_clean.png" class="avatar">
+                </span>
+                <span v-else-if="Math.ceil(cat.rank / cat.votes) < 0">
+                    <img src="~/Content/cat_pirate.png" class="avatar">
+                </span>
+                <span v-else>
+                    <img src="~/Content/cat_eyes.png" class="avatar">
+                </span>
+                    <img v-bind:src="cat.url" class="avatar">
+                <p v-if="cat.votes > 0" class="btn" style="font-family: cursive">Score : {{Math.ceil(cat.rank / cat.votes)}} Votes : {{cat.votes}} </p>
+                <p v-else class="btn" style="font-family: cursive">Score : 0 Votes : {{cat.votes}} </p>
             </div>
         </li>
     </ul>

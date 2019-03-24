@@ -38,7 +38,6 @@ var app = new Vue({
         },
 
         upVote: function (first, second) {
-
             $.post('/api/vote', JSON.stringify({ VoteFor: first.id, VoteAgainst: second.id }));
             this.index = (this.index + 2) % this.cats.length;
             this.nextCatsToVote();
