@@ -3,11 +3,11 @@
 </header>
 
 <div id="cats">
-    <div class="photo">
+    <div class="photo alert alert-primary">
         <img v-bind:src="catOne" class="image" v-on:click="voteLeft" />
         <p>Score : {{catOneScore}}</p>
     </div>
-    <div class="photo">
+    <div class="photo alert alert-primary">
         <img v-bind:src="catTwo" class="image" v-on:click="voteRight" />
         <p>Score : {{catTwoScore}}</p>
     </div>
